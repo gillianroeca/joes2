@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Joes Hotdogs part 2</title>
+
+<style>
+	
+
+h2,p,label{margin: 20px;}
+
+.container{
+	outline: 5px dotted #ff0000;
+	height: 38px;
+	width: 350px;
+	color: #000;
+	font-family: sans-serif;
+}
+
+	</style>
+	
+</head>
+	
+	
+	
+
+<body>
+
+	<div class="container"> 
+		<h1>&nbsp;&nbsp;&nbsp;Joe's Hotdog Stand</h1>
+	</div>
+	
+
+
+    	<h2>Order: </h2>
+
+	<form>
+		<label for = "hotdogs"> Hotdogs:</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<select id="quantity1" name="quantity">
+			<option value=" "> </option>
+   			<option value="1">1</option>
+    		<option value="2">2</option>
+   			<option value="3">3</option>
+   		 	<option value="4">4</option>
+   		 	<option value="5">5</option>
+   		 	<option value="10">10</option>
+   		 	<option value="15">15</option>
+   		 	<option value="20">20</option>
+  		</select>
+  		<br>
+  		<label for = "fries"> French Fries:</label> &nbsp;&nbsp;
+		<select id="quantity2" name="quantity">
+			<option value=" "> </option>
+   			<option value="1">1</option>
+    		<option value="2">2</option>
+   			<option value="3">3</option>
+   		 	<option value="4">4</option>
+   		 	<option value="5">5</option>
+   		 	<option value="10">10</option>
+   		 	<option value="15">15</option>
+   		 	<option value="20">20</option>
+  		</select>
+  		<br>
+  		<label for = "drink"> Drinks:</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<select id="quantity3" name="quantity">
+			<option value=" "> </option>
+   			<option value="1">1</option>
+    		<option value="2">2</option>
+   			<option value="3">3</option>
+   		 	<option value="4">4</option>
+   		 	<option value="5">5</option>
+   		 	<option value="10">10</option>
+   		 	<option value="15">15</option>
+   		 	<option value="20">20</option>
+  		</select> 
+  		<br><br>
+		<input type = "button" value = "Tally Order" onclick = "getNums()">
+	</form>
+
+
+	 
+  	
+    	<h2>Reciept: </h2>
+    	<p id="subtotal"></p>
+		<p id="discount"></p>
+		<p id="tax"></p>
+		<p id="total"></p>
+
+
+
+	<script language="javascript">
+	subtotal = 0.00;
+	discount = 0.00;
+	total = 0.00;
+	tax = 0.00;
+
+
+	function getNums()
+	{
+		hotdogs = document.getElementById("quantity1").value;
+		fries = document.getElementById("quantity2").value;
+		drinks = document.getElementById("quantity3").value;
+	
+		if (hotdogs>0){
+			n = 1;
+			while(n<=hotdogs){
+				subtotal+=3.25;	
+				n++;
+			}
+		}	
+		
+	
+		if (fries>0){
+			i = 1;
+			while(i<=fries){
+				subtotal+=2.00;	
+				i++;
+			}
+		}
+
+		if (drinks>0){
+			j = 1;
+			while(j<=hotdogs){
+				subtotal+=1.50;	
+				j++;
+			}
+		}
+
+		if(hotdogs==" " || fries==" " || drinks==" ")
+		{
+			alert("ERROR: no items have been ordered ");
+		}
+		else{
+
+			alert("Order Details: " + "\nHotdogs: " + hotdogs + "\nFrench Fries: " + fries+ "\nDrinks: " + drinks);
+		}
+	
+	fixedsubtotal = subtotal.toFixed(2);
+	document.getElementById("subtotal").innerHTML = "Subtotal: $" + fixedsubtotal;
+		if(subtotal>=20)
+		{
+			discount = subtotal*.10;
+			fixeddiscount = discount.toFixed(2);
+			document.getElementById("discount").innerHTML = "Discount: -$" + fixeddiscount;
+		}
+
+	tax= subtotal*.0625
+	fixedtax = tax.toFixed(2);
+		document.getElementById("tax").innerHTML = "Tax: +$" + fixedtax;
+	
+	total = subtotal - discount + tax;
+	fixedtotal = total.toFixed(2);
+		document.getElementById("total").innerHTML = "Total: $" + fixedtotal;
+
+	}
+	
+
+		
+	
+	</script>
+	
+	
+	
+	
+</body>
+</html>
